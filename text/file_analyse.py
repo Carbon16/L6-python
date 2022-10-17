@@ -7,11 +7,12 @@ fileName = str(input("Enter path to file: "))
 f = open(fileName, 'r')
 data = f.read()
 f.close()
-sample = []
 chunky = {}
 
 
 #get number of documents
+#welcome to regex hell
+#
 match = re.findall(r'([0-9]{1,3}) of ([0-9]{1,3}) DOCUMENTS\s+(.+)\s+(.+)([\S\s]*?)LENGTH: \d{0,3} words([\n]*?)([\S\s]*?)LOAD-DATE', data)
 for i in match:
     id = str(i[0])
@@ -26,6 +27,7 @@ for i in match:
     }
      
 for i in chunky:
+    sample = []
     for i in chunky:
         if i != int(chunky[i]["id"]):
             sample.append(chunky[i]['text'])
