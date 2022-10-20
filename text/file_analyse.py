@@ -38,14 +38,17 @@ for i in chunky:
     #checks if the current document is in the array, if it is it adds the duplicate attribue to the dictionary
     if chunky[i]['text'] in sample:
         chunky[i]['duplicate'] = True
+    if chunky[i]['text'] not in sample:
+        chunky[i]['duplicate'] = False
 
 #saves each item in the dictionary to a sepereate text file
 for i in chunky:
-    fNom = (chunky[i]['title']).replace(' ', '_') + '_' + chunky[i]['date'].replace(' ', '_') + '_' + chunky[i]['id'] + '.txt'
-    fin = open(fNom, 'w', encoding='utf-8')
-    fin.write(chunky[i]['text'])
-    print(fNom)
-    fin.close()
+    if chunky[i]['duplicate'] == False:
+        fNom = (chunky[i]['title']).replace(' ', '_') + '_' + chunky[i]['date'].replace(' ', '_') + '_' + chunky[i]['id'] + '.txt'
+        fin = open(fNom, 'w', encoding='utf-8')
+        fin.write(chunky[i]['text'])
+        print(fNom)
+        fin.close()
 
 #saves json for debugging and anlaysis
 with open('data.json', 'w', encoding='utf-8') as file:
