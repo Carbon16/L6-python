@@ -4,7 +4,6 @@
 # developed in the Python 3.9 programming environment
 
 import random
-import os
 
 def Main():
     ThisGame = Breakthrough()
@@ -169,6 +168,7 @@ class Breakthrough():
             print("File not loaded")
         
     def __GetRandomLock(self):
+        print(self.__Locks[random.randint(0, len(self.__Locks) - 1)])
         return self.__Locks[random.randint(0, len(self.__Locks) - 1)]
 
     def __GetCardFromDeck(self, CardChoice):
@@ -393,8 +393,8 @@ class DifficultyCard(Card):
             Count += 1
 
 class CardCollection():
-    def __init__(self, N):
-        self._Name = N
+    def __init__(self, E):
+        self._Name = E
         self._Cards = []
 
     def GetName(self):
