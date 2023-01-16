@@ -44,9 +44,14 @@ class Breakthrough():
                             self.__GetCardFromDeck(CardChoice)
                         elif DiscardOrPlay == "P":
                             self.__PlayCardToSequence(CardChoice)
+                    if MenuChoice == "Q":
+                        self.__Score += self.__Deck.GetNumberOfCards()
+                        self.__Deck = CardCollection("NULL")
+                        self.__GameOver = self.__CheckIfPlayerHasLost()
                     if self.__CurrentLock.GetLockSolved():
                         self.__LockSolved = True
                         self.__ProcessLockSolved()
+                    print("\nNumber of remaining cards: " + str(self.__Deck.GetNumberOfCards()))
                 self.__GameOver = self.__CheckIfPlayerHasLost()
         else:
             print("No locks in file.")
@@ -207,7 +212,7 @@ class Breakthrough():
 
     def __GetChoice(self):
         print()
-        Choice = input("(D)iscard inspect, (U)se card:> ").upper()
+        Choice = input("(D)iscard inspect, (U)se card, (Q)uit:> ").upper()
         return Choice
     
     def __AddDifficultyCardsToDeck(self):
